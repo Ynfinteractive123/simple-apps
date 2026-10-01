@@ -1,6 +1,9 @@
 pipeline {
     agent { label 'host1-yoga' }
-
+    environment {
+        SONAR_TOKEN = credentials('sonar-token')
+        HOST_TOKEN = credentials('host-token')
+    }
     stages {
         stage('Pull SCM') {
             steps {
@@ -34,8 +37,8 @@ pipeline {
                 sonar-scanner \
                 -Dsonar.projectKey=simple-apps \
                 -Dsonar.sources=. \
-                -Dsonar.host.url=http://172.23.4.114:9000 \
-                -Dsonar.token=sqp_b6b028ca74c39bf4c64a374119a4bf8087b98ec6
+                -Dsonar.host.url=${HOST_TOKEN} \
+                -Dsonar.token=${SONAR_TOKEN}
                 '''
             }
         }
