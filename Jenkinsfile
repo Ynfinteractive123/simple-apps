@@ -40,6 +40,12 @@ pipeline {
             }
         }
         
+        stage('Deliver') {
+            steps {
+              input message: 'Apakah anda sudah yakin untuk deploy ke production', ok: 'Deploy Sekarang!'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 sh'''
