@@ -1,8 +1,8 @@
 pipeline {
     agent { label 'host1-yoga' }
     environment {
-        SONAR_TOKEN = credentials('sonar-token')
-        HOST_TOKEN = credentials('host-token')
+        SONAR_TOKEN = credentials('token-sonar')
+        HOST_TOKEN = credentials('host-sonar')
     }
     stages {
         stage('Pull SCM') {
